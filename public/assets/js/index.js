@@ -1,5 +1,3 @@
-alert("working");
-
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
@@ -17,13 +15,18 @@ var getNotes = function () {
   });
 };
 
+// adding incremented variable for the id to delete
+let id = 0;
 // A function for saving a note to the db
 var saveNote = function (note) {
   return $.ajax({
     url: "/api/notes",
     data: note,
     method: "POST"
-  });
+  }).then(res => {
+    id +=
+      deleteNote(id);
+  })
 };
 
 // A function for deleting a note from the db
