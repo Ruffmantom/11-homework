@@ -6,7 +6,7 @@ This was a tough Homework, I like it when I get to make the whole program instea
 the app .delete was the hardest part made me have quite a fried brain just trying to think through even what to search. I had no idea what to google to find an answer. 
 
 here is the video of it working.
-[working program]("https://youtu.be/fLupOFY5ECc")
+[working program](https://youtu.be/fLupOFY5ECc)
 
 
 ---
