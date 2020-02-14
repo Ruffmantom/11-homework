@@ -12,18 +12,7 @@ module.exports = function (app) {
         res.json(true);
     });
 
-    // app.delete("/api/notes/:id", function (req, res) {
-    //     noteData.splice(req.body.map({ id }));
+    app.delete("/api/notes/:id", function (req, res) {
 
-
-    // });
-    app.delete('/api/notes/:id', function (req, res) {
-        var id = req.params.id;
-        Book.removeBook(id, function (err, book) {
-            if (err) {
-                throw err;
-            }
-            res.json(book);
-        });
     });
 }
