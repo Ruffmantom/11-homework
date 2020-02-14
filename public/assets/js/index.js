@@ -16,16 +16,14 @@ var getNotes = function () {
 };
 
 // adding incremented variable for the id to delete
-let id = 0;
+let noteId = 0;
 // A function for saving a note to the db
 var saveNote = function (note) {
+
   return $.ajax({
-    url: "/api/notes",
+    url: "/api/notes/",
     data: note,
     method: "POST"
-  }).then(res => {
-    id +=
-      deleteNote(id);
   })
 };
 
@@ -34,7 +32,10 @@ var deleteNote = function (id) {
   return $.ajax({
     url: "api/notes/" + id,
     method: "DELETE"
-  });
+  }).then(function (res) {
+    console.log(res);
+
+  })
 };
 
 // If there is an activeNote, display it, otherwise render empty inputs
@@ -56,9 +57,11 @@ var renderActiveNote = function () {
 
 // Get the note data from the inputs, save it to the db and update the view
 var handleNoteSave = function () {
+  noteId++
   var newNote = {
     title: $noteTitle.val(),
-    text: $noteText.val()
+    text: $noteText.val(),
+    id: noteId
   };
 
   saveNote(newNote).then(function (data) {
@@ -72,11 +75,12 @@ var handleNoteDelete = function (event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
-  var note = $(this)
-    .parent(".list-group-item")
-    .data();
-
-  if (activeNote.id === note.id) {
+  var note = $(this).parent(".list-group-item").data();
+  console.log(parseInt(note.id));
+  console.log("---------note id-----------")
+  console.log(parseInt(activeNote.id));
+  console.log("------------activenote id--------")
+  if (parseInt(activeNote.id) === parseInt(note.id)) {
     activeNote = {};
   }
 
