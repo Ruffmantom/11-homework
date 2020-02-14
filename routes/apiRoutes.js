@@ -13,6 +13,19 @@ module.exports = function (app) {
     });
 
     app.delete("/api/notes/:id", function (req, res) {
-
+        var id = req.params.id;
+        // console.log(id);
+        // finding out that I needed to use req.params to get the id. not body "facepalm"
+        for (let i = 0; i < noteData.length; i++) {
+            if (id === noteData[i].id) {
+                noteData.splice(i, 1);
+                // splice out the data that matched the id
+            }
+        }
+        for (let e = 0; e < noteData.length; e++) {
+            noteData[e].id = e.toString();
+            // bring the data back together after slice
+        }
+        res.json({ ok: true });
     });
 }
